@@ -23,7 +23,7 @@ namespace ShipIt.Controllers
         }
 
         [HttpPost("")]
-        public void Post([FromBody] OutboundOrderRequestModel request)
+        public int Post([FromBody] OutboundOrderRequestModel request)
         {
             Log.Info(String.Format("Processing outbound order: {0}", request));
 
@@ -98,7 +98,7 @@ namespace ShipIt.Controllers
             _stockRepository.RemoveStock(request.WarehouseId, lineItems);
 
             int trucksNumber = (int)Math.Ceiling(totalWeight/2000);
-            Console.WriteLine(trucksNumber);
+            return trucksNumber;
         }
     }
 }
