@@ -14,6 +14,7 @@ It should look something like this:
 ```
 POSTGRES_CONNECTION_STRING=Server=127.0.0.1;Port=5432;Database=your_database_name;User Id=your_database_user; Password=your_database_password;
 ```
+## Running PSQL Commands
 Run command in PostregSQL-PSQL Tools: \i C://"path to your SQL database-dump-file".sql
 
 Run command in Postgres to give permission to run different queries

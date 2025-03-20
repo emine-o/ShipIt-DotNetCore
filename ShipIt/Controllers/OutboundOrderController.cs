@@ -97,7 +97,7 @@ namespace ShipIt.Controllers
 
             _stockRepository.RemoveStock(request.WarehouseId, lineItems);
 
-            int trucksNumber = (int)Math.Ceiling(totalWeight/2000);
+            int trucksNumber = (int)Math.Ceiling(totalWeight/(2000*1000));
             return trucksNumber;
         }
     }

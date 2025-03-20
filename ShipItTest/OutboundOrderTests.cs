@@ -199,29 +199,70 @@ namespace ShipItTest
             }
         }
 
-        // [Test]
-        // public void TestNumberOfTrucks()
-        // {
-        //     onSetUp();
-        //     productRepository.AddProducts(new List<ProductDataModel>() { new ProductDataModel()})
-        //     stockRepository.AddStock(WAREHOUSE_ID, new List<StockAlteration>() { new StockAlteration(productId, 10) });
-        //     var outboundOrder = new OutboundOrderRequestModel()
-        //     {
-        //         WarehouseId = WAREHOUSE_ID,
-        //         OrderLines = new List<OrderLine>()
-        //         {
-        //             new OrderLine()
-        //             {
-        //                 gtin = GTIN,
-        //                 quantity = 3
-        //             }
-        //         }
-        //     };
+        [Test]
+        public void TestNumberOfTrucksNeeded1()
+        {
+            onSetUp();
+            stockRepository.AddStock(WAREHOUSE_ID, new List<StockAlteration>() { new StockAlteration(productId, 10) });
+            var outboundOrder = new OutboundOrderRequestModel()
+            {
+                WarehouseId = WAREHOUSE_ID,
+                OrderLines = new List<OrderLine>()
+                {
+                    new OrderLine()
+                    {
+                        gtin = GTIN,
+                        quantity = 3
+                    }
+                }
+            };
 
-        //     outboundOrderController.Post(outboundOrder);
+            int numberOfTrucks = outboundOrderController.Post(outboundOrder);
+            Assert.AreEqual(numberOfTrucks, 1);
+        }
 
-        //     var stock = stockRepository.GetStockByWarehouseAndProductIds(WAREHOUSE_ID, new List<int>() { productId })[productId];
-        //     Assert.AreEqual(stock.held, 7);
-        // }
+        [Test]
+        public void TestNumberOfTrucksNeeded2()
+        {
+            onSetUp();
+            stockRepository.AddStock(WAREHOUSE_ID, new List<StockAlteration>() { new StockAlteration(productId, 3000) });
+            var outboundOrder = new OutboundOrderRequestModel()
+            {
+                WarehouseId = WAREHOUSE_ID,
+                OrderLines = new List<OrderLine>()
+                {
+                    new OrderLine()
+                    {
+                        gtin = GTIN,
+                        quantity = 2500
+                    }
+                }
+            };
+
+            int numberOfTrucks = outboundOrderController.Post(outboundOrder);
+            Assert.AreEqual(numberOfTrucks, 1);
+        }
+
+        [Test]
+        public void TestNumberOfTrucksNeeded3()
+        {
+            onSetUp();
+            stockRepository.AddStock(WAREHOUSE_ID, new List<StockAlteration>() { new StockAlteration(productId, 75000) });
+            var outboundOrder = new OutboundOrderRequestModel()
+            {
+                WarehouseId = WAREHOUSE_ID,
+                OrderLines = new List<OrderLine>()
+                {
+                    new OrderLine()
+                    {
+                        gtin = GTIN,
+                        quantity = 45000
+                    }
+                }
+            };
+
+            int numberOfTrucks = outboundOrderController.Post(outboundOrder);
+            Assert.AreEqual(numberOfTrucks, 7);
+        }
     }
 }
