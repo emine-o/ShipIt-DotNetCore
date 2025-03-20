@@ -11,11 +11,14 @@ namespace ShipIt.Models.ApiModels
         public int WarehouseId { get; set; }
         public IEnumerable<OrderLine> OrderLines { get; set; }
 
+        // public int NumberOfTrucks { get; set; }
+
         public override String ToString()
         {
             return new StringBuilder()
                 .AppendFormat("warehouseId: {0}, ", WarehouseId)
                 .AppendFormat("orderLines: {0}", OrderLines)
+                // .AppendFormat("numberOfTrucks: {0}", NumberOfTrucks)
                 .ToString();
         }
     }

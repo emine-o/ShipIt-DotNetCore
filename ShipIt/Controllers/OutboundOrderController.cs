@@ -99,6 +99,20 @@ namespace ShipIt.Controllers
 
             int trucksNumber = (int)Math.Ceiling(totalWeight/(2000*1000));
             return trucksNumber;
+
+            // int trucksNumber = (int)Math.Ceiling(totalWeight / (2000 * 1000));
+            // var truckInfo = new {
+            //     warehouseId = request.WarehouseId,
+            //     numberOfTrucks = trucksNumber
+            // };
+
+            // return $"truckInfo: {truckInfo.numberOfTrucks}";
+
+            // return new OutboundOrderRequestModel()
+            // {
+            //     NumberOfTrucks = trucksNumber,
+            //     WarehouseId = request.WarehouseId,
+            // };
         }
     }
 }
